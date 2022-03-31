@@ -13,8 +13,4 @@
   copy:
       src: httpd.conf
       dest: /etc/httpd/conf
-- name: "Start the web service"
-  become: yes
-  service:
-      name: httpd
-      state: restarted
+  notify: "Restart the web service"
