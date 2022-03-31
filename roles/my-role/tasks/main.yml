@@ -1,0 +1,20 @@
+- name: "Install the httpd web server"
+  become: yes
+  yum:
+      name: httpd
+      state: latest
+- name: "Copy the index.html file"
+  become: yes
+  copy:
+      src: index.html
+      dest: /var/www/html
+- name: "Copy httpd.conf file"
+  become: yes
+  copy:
+      src: httpd.conf
+      dest: /etc/httpd/conf
+- name: "Start the web service"
+  become: yes
+  service:
+      name: httpd
+      state: restarted
